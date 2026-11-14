@@ -43,8 +43,19 @@ justify-content: space-around;
     background: #FB7185;
 }
 button {
-    background-color: #4CAF50;
+  
     border: none;
     padding: 7px 15px;
     border-radius: 10px;
+}
+
+#reset {
+display: none;
+margin: 0 auto;
+margin-top: 20px;
+padding: 10px 15px;
+background-color: #1E293B;
+color: whitesmoke;
+border-radius: 5px;
+
 }

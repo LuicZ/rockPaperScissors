@@ -10,11 +10,10 @@ const beats = {
     "scissors": "paper",
     "paper": "rock"
 };
+const matchWinner = document.getElementById("match-winner");
+const resetButton = document.getElementById("reset");
 
 
-
-const lastWinner = document.getElementById("last-winner");
-let winnerTimeout;
 
 function playGame(playerChoice) {
     const computer = weapons[Math.floor(Math.random() * weapons.length)];
@@ -23,8 +22,9 @@ function playGame(playerChoice) {
    console.log(computer);
    if (playerChoice === computer) {
    winner.textContent = "It's a tie!";
-roundWinner = "Tie";}
-   else if (beats[playerChoice] === computer) {
+}
+
+    else if (beats[playerChoice] === computer) {
     winner.textContent = "You win!";
     playerPoints++;
     playerScore.textContent = `You: ${playerPoints}`;
@@ -36,16 +36,13 @@ roundWinner = "Tie";}
         computerScore.textContent = `Computer: ${computerPoints}`;
         roundWinner = "Computer";
     }
-clearTimeout(winnerTimeout);
  
 
 
-winnerTimeout = setTimeout(() => {
-lastWinner.textContent = "";
-    
-}, 1000);
+
 
     resetGame(roundWinner);
+
 }
 
 
@@ -68,13 +65,39 @@ let playerPoints = 0;
 let computerPoints = 0;
 
 
-function resetGame(roundWinner) {
+function resetGame(matchWinner) { // Reset the game if either player reaches 5 points//
+
     if (playerPoints >= 5 || computerPoints >= 5) {
-         lastWinner.textContent = `Last round winner: ${roundWinner}`;
+         matchWinner.textContent = `Match winner: ${matchWinner}`;
+       const rock = document.getElementById("rock");
+       const paper = document.getElementById("paper");
+         const scissors = document.getElementById("scissors");
+         rock.disabled = true;
+            paper.disabled = true;
+            scissors.disabled = true;
+            resetButton.style.display = "block"; // Show the reset button when the match ends
+       newGame();
+
+       /* playerScore.textContent = `You: ${playerPoints}`;
+        computerScore.textContent = `Computer: ${computerPoints}`;*/
+    }
+}
+
+function newGame() {
+    resetButton.addEventListener("click", () => {
         playerPoints = 0;
         computerPoints = 0;
-
+         resetButton.style.display = "none"; // Hides the reset button until the match ends 
         playerScore.textContent = `You: ${playerPoints}`;
         computerScore.textContent = `Computer: ${computerPoints}`;
-    }
+        matchWinner.textContent = "";
+        winner.textContent = "";
+        const rock = document.getElementById("rock");
+        const paper = document.getElementById("paper");
+        const scissors = document.getElementById("scissors");
+        rock.disabled = false;
+        paper.disabled = false;
+        scissors.disabled = false;
+        
+    });
 }
