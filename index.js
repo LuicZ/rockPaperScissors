@@ -16,6 +16,7 @@ const matchWinner = document.getElementById("match-winner");
 
 
 function playGame(playerChoice) {
+    let roundWinner = "";
     const computer = weapons[Math.floor(Math.random() * weapons.length)];
    userChoice.textContent = `You chose: ${playerChoice}`;
    computerChoice.textContent = `Computer chose: ${computer}`;
@@ -36,11 +37,6 @@ function playGame(playerChoice) {
         computerScore.textContent = `Computer: ${computerPoints}`;
         roundWinner = "Computer";
     }
- 
-
-
-
-
     resetGame(roundWinner);
 
 }
@@ -77,7 +73,6 @@ function resetGame(roundWinner) { // Reset the game if either player reaches 5 p
             resetButton.style.display = "block"; // Show the reset button when the match ends
              matchWinner.textContent = `${roundWinner} won the match!`;
        newGame();
-
        /* playerScore.textContent = `You: ${playerPoints}`;
         computerScore.textContent = `Computer: ${computerPoints}`;*/
        
@@ -92,13 +87,10 @@ function newGame() {
         playerScore.textContent = `You: ${playerPoints}`;
         computerScore.textContent = `Computer: ${computerPoints}`;
         winner.textContent = "";
-        const rock = document.getElementById("rock");
-        const paper = document.getElementById("paper");
-        const scissors = document.getElementById("scissors");
         rock.disabled = false;
         paper.disabled = false;
         scissors.disabled = false;
-
+        matchWinner.textContent = ""
         
     });
 }
