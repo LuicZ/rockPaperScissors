@@ -49,6 +49,13 @@ button {
     border-radius: 10px;
 }
 
+#match-winner {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: goldenrod;
+    text-align: center;
+}
+
 #reset {
 display: none;
 margin: 0 auto;
@@ -57,5 +64,4 @@ padding: 10px 15px;
 background-color: #1E293B;
 color: whitesmoke;
 border-radius: 5px;
-
 }
